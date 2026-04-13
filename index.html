@@ -1555,12 +1555,14 @@ const DEMO_DATA = {
     { txn_day: new Date().toISOString().slice(0,10), service_type: 'Dental', total_amount: 2800 }
   ],
   campaigns: [
-    { id: 1, clinic_id: 'summit', campaign_type: 'pricing', status: 'active', title: 'Dental Margin Recovery', created_at: '2026-03-12', projected_uplift: 8400 },
-    { id: 2, clinic_id: 'summit', campaign_type: 'pricing', status: 'active', title: 'Exam Fee Adjustment', created_at: '2026-03-22', projected_uplift: 6200 }
+    { id: 1, clinic_id: 'demo', campaign_type: 'pricing', status: 'active', title: 'Dental Margin Recovery', created_at: '2026-03-12', projected_uplift: 6863 },
+    { id: 2, clinic_id: 'demo', campaign_type: 'pricing', status: 'active', title: 'Exam Fee Adjustment', created_at: '2026-03-22', projected_uplift: 6863 },
+    { id: 3, clinic_id: 'demo', campaign_type: 'pricing', status: 'active', title: 'Surgical Kit Reprice', created_at: '2026-03-29', projected_uplift: 6863 }
   ],
   campaign_items: [
-    { id: 11, campaign_id: 1, service_code: 'DENT', current_price: 560, suggested_price: 620, potential_uplift: 8400 },
-    { id: 12, campaign_id: 2, service_code: 'EXAM', current_price: 79, suggested_price: 89, potential_uplift: 6200 }
+    { id: 11, campaign_id: 1, service_code: 'DENT', current_price: 560, suggested_price: 620, potential_uplift: 6863 },
+    { id: 12, campaign_id: 2, service_code: 'EXAM', current_price: 79, suggested_price: 89, potential_uplift: 6863 },
+    { id: 13, campaign_id: 3, service_code: 'SURG', current_price: 1325, suggested_price: 1450, potential_uplift: 6863 }
   ],
   campaign_tracking: [
     { captured_uplift: 3200, implemented_at: '2026-03-28' }
@@ -4873,7 +4875,7 @@ const CampaignUI = (() => {
   async function loadCampaignState() {
     for (const [type, num] of Object.entries(campaigns)) {
       try {
-        const res = await fetch(`https://demo.local/rest/v1/campaigns?select=*&clinic_id=eq.summit&campaign_type=eq.${type}&status=eq.active&limit=1`, {
+        const res = await fetch(`https://demo.local/rest/v1/campaigns?select=*&clinic_id=eq.demo&campaign_type=eq.${type}&status=eq.active&limit=1`, {
           headers: {
             apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
@@ -5025,7 +5027,7 @@ window.openCampaignAnalytics = async function(type) {
 
   try {
     // Get campaign
-    const res = await fetch(`https://demo.local/rest/v1/campaigns?select=*&clinic_id=eq.summit&campaign_type=eq.${type}&status=eq.active&limit=1`, {
+    const res = await fetch(`https://demo.local/rest/v1/campaigns?select=*&clinic_id=eq.demo&campaign_type=eq.${type}&status=eq.active&limit=1`, {
       headers: {
         apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
