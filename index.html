@@ -1031,13 +1031,7 @@
 .campaign-btn{background:#2563eb;color:#fff;border:none;border-radius:8px;padding:6px 10px;font-size:.8rem;font-weight:700;}
 
 </style></head><body>
-<input id="loginEmail" placeholder="Email" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #334155;background:#0b1220;color:#fff" />
-    <input id="loginPass" type="password" placeholder="Password" style="width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #334155;background:#0b1220;color:#fff" />
-    <button id="loginBtn" style="width:100%;padding:10px;margin-top:8px;background:#2563eb;color:#fff;border:none;border-radius:8px;font-weight:700">Sign in</button>
-    <div id="loginErr" style="margin-top:6px;color:#fca5a5;font-size:.85rem"></div>
-  </div>
-</div>
-<!-- HEADER --><header class="header"><div class="header-left"><div class="logo-wrap"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="logo-text">Vet <span>INC</span></div></div><div class="header-divider"></div><div class="clinic-name" id="clinicName">Rosslyn Veterinary Clinic</div></div><div class="header-right"><span class="last-updated" id="lastUpdated">Loading data...</span><span class="btn-upload" style="cursor:default;pointer-events:none;opacity:0.75">&#9679; Live</span></div></header><!-- TAB NAV --><nav class="tab-nav"><button class="tab-btn active" onclick="showTab('analytics', this)"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="3" width="4" height="18"/><rect x="10" y="8" width="4" height="13"/><rect x="2" y="13" width="4" height="8"/></svg></span> Key Indicators
+<!-- HEADER --><header class="header"><div class="header-left"><div class="logo-wrap"><div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="logo-text">Vet <span>INC</span></div></div><div class="header-divider"></div><div class="clinic-name" id="clinicName">Summit Valley Veterinary</div></div><div class="header-right"><span class="last-updated" id="lastUpdated">Loading data...</span><span class="btn-upload" style="cursor:default;pointer-events:none;opacity:0.75">&#9679; Live</span></div></header><!-- TAB NAV --><nav class="tab-nav"><button class="tab-btn active" onclick="showTab('analytics', this)"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="3" width="4" height="18"/><rect x="10" y="8" width="4" height="13"/><rect x="2" y="13" width="4" height="8"/></svg></span> Key Indicators
  </button><button class="tab-btn" onclick="showTab('campaigns', this)"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span> Pricing Intelligence
  </button><button class="tab-btn" onclick="showTab('insights', this)"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span> Insights &amp; Actions
  </button><button class="tab-btn" onclick="showTab('marketing', this)" style="pointer-events:none;opacity:0.5" title="Locked"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12l-18-5v-2z"/><path d="M7 13v6"/></svg></span> Marketing</button><button class="tab-btn" onclick="showTab('inventory', this)" style="pointer-events:none;opacity:0.5" title="Locked"><span class="tab-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></span> Inventory Intelligence
@@ -1319,7 +1313,7 @@
   <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
     <div style="width:52px;height:52px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,99,235,0.25)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
     <div>
-      <div style="font-size:1.1rem;font-weight:800;color:var(--text)" id="clinicNameSetting">Rosslyn Veterinary Clinic</div>
+      <div style="font-size:1.1rem;font-weight:800;color:var(--text)" id="clinicNameSetting">Summit Valley Veterinary</div>
       <div style="font-size:0.78rem;color:var(--muted)">Edmonton / St. Albert, AB</div>
     </div>
   </div>
@@ -1503,45 +1497,122 @@ function showTab(name, btn) {
 }
 
 //  Supabase 
-const SB_URL = 'https://rnqhhzatlxmyvccdvqkr.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30';
+const DEMO_MODE = true;
+const SB_URL = 'https://demo.local';
+const SB_KEY = 'DEMO_PUBLIC_KEY';
+
+const DEMO_DATA = {
+  service_usage_agg: [
+    { code: 'EXAM', total_amount: 185000, total_qty: 2400, txn_count: 2400, service_type: 'Exam' },
+    { code: 'SURG', total_amount: 420000, total_qty: 320, txn_count: 320, service_type: 'Surgery' },
+    { code: 'DENT', total_amount: 210000, total_qty: 260, txn_count: 260, service_type: 'Dental' },
+    { code: 'VACC', total_amount: 98000, total_qty: 1800, txn_count: 1800, service_type: 'Wellness' },
+    { code: 'LAB', total_amount: 160000, total_qty: 900, txn_count: 900, service_type: 'Diagnostics' }
+  ],
+  prices: [
+    { treatment_code: 'EXAM', price: 89, updated_at: '2026-03-01' },
+    { treatment_code: 'SURG', price: 1450, updated_at: '2026-02-15' },
+    { treatment_code: 'DENT', price: 620, updated_at: '2026-02-20' },
+    { treatment_code: 'VACC', price: 68, updated_at: '2026-03-05' },
+    { treatment_code: 'LAB', price: 115, updated_at: '2026-02-28' }
+  ],
+  treatments: [
+    { code: 'EXAM', name: 'Wellness Exam', type_flag: 'S' },
+    { code: 'SURG', name: 'Spay/Neuter Surgery', type_flag: 'S' },
+    { code: 'DENT', name: 'Dental Cleaning', type_flag: 'S' },
+    { code: 'VACC', name: 'Core Vaccinations', type_flag: 'S' },
+    { code: 'LAB', name: 'In‑House Lab Panel', type_flag: 'S' }
+  ],
+  accounts: Array.from({length: 90}, (_,i)=>({
+    txn_date: new Date(Date.now() - (89-i)*86400000).toISOString().slice(0,10),
+    amount_raw: Math.round(4200 + Math.sin(i/6)*900 + (i%7)*120),
+    type_flag: 'R'
+  })),
+  micro_margin_agg: [
+    { code: 'EXAM', price: 89, price_changed: 79, sales_since_change: 620, potential_uplift: 6200 },
+    { code: 'DENT', price: 620, price_changed: 560, sales_since_change: 140, potential_uplift: 8400 },
+    { code: 'LAB', price: 115, price_changed: 99, sales_since_change: 420, potential_uplift: 6720 }
+  ],
+  items: [
+    { code: 'MED001', name: 'Amoxicillin 100mg', service_code: 'EXAM', unit_cost: 6 },
+    { code: 'MED002', name: 'Pain Relief Pack', service_code: 'SURG', unit_cost: 28 },
+    { code: 'MED003', name: 'Dental Kit', service_code: 'DENT', unit_cost: 45 }
+  ],
+  daily_kpis: Array.from({length: 120}, (_,i)=>{
+    const d = new Date(Date.now() - (119-i)*86400000);
+    return {
+      txn_day: d.toISOString().slice(0,10),
+      revenue: Math.round(4200 + Math.sin(i/5)*1100 + (i%6)*150),
+      visits: Math.round(28 + (i%5)*3),
+      line_items: Math.round(90 + (i%7)*8),
+      unique_services: Math.round(12 + (i%4)*2),
+      avg_line_amount: Math.round(68 + (i%5)*6)
+    };
+  }),
+  daily_service_breakdown: [
+    { txn_day: new Date().toISOString().slice(0,10), service_type: 'Exam', total_amount: 4200 },
+    { txn_day: new Date().toISOString().slice(0,10), service_type: 'Surgery', total_amount: 6100 },
+    { txn_day: new Date().toISOString().slice(0,10), service_type: 'Dental', total_amount: 2800 }
+  ],
+  campaigns: [
+    { id: 1, clinic_id: 'summit', campaign_type: 'pricing', status: 'active', title: 'Dental Margin Recovery', created_at: '2026-03-12', projected_uplift: 8400 },
+    { id: 2, clinic_id: 'summit', campaign_type: 'pricing', status: 'active', title: 'Exam Fee Adjustment', created_at: '2026-03-22', projected_uplift: 6200 }
+  ],
+  campaign_items: [
+    { id: 11, campaign_id: 1, service_code: 'DENT', current_price: 560, suggested_price: 620, potential_uplift: 8400 },
+    { id: 12, campaign_id: 2, service_code: 'EXAM', current_price: 79, suggested_price: 89, potential_uplift: 6200 }
+  ],
+  campaign_tracking: [
+    { captured_uplift: 3200, implemented_at: '2026-03-28' }
+  ]
+};
+
+function demoFilter(rows, params){
+  if (!params) return rows;
+  let out = rows.slice();
+  const dayEq = params.match(/txn_day=eq\.([0-9-]+)/);
+  if (dayEq) out = out.filter(r => r.txn_day === dayEq[1]);
+  const dayGte = params.match(/txn_day=gte\.([0-9-]+)/);
+  if (dayGte) out = out.filter(r => r.txn_day >= dayGte[1]);
+  const dayLt = params.match(/txn_day=lt\.([0-9-]+)/);
+  if (dayLt) out = out.filter(r => r.txn_day < dayLt[1]);
+  const dateGte = params.match(/txn_date=gte\.([0-9-]+)/);
+  if (dateGte) out = out.filter(r => r.txn_date >= dateGte[1]);
+  const clinic = params.match(/clinic_id=eq\.([^&]+)/);
+  if (clinic) out = out.filter(r => (r.clinic_id||'') === clinic[1]);
+  const status = params.match(/status=eq\.([^&]+)/);
+  if (status) out = out.filter(r => (r.status||'') === status[1]);
+  const limit = params.match(/limit=([0-9]+)/);
+  if (limit) out = out.slice(0, parseInt(limit[1]));
+  return out;
+}
 
 async function sbFetch(table, params) {
- const res = await fetch(`${SB_URL}/rest/v1/${table}?${params}`, {
-   headers: { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, Accept: 'application/json' }
- });
- if (!res.ok) throw new Error('SB ' + res.status);
- return res.json();
+  return demoFilter(DEMO_DATA[table] || [], params);
 }
 
 async function sbFetchAll(table, params) {
- const headers = { apikey: SB_KEY, Authorization: 'Bearer ' + SB_KEY, Accept: 'application/json', Prefer: 'count=exact' };
- let all = [], from = 0, total = Infinity;
- const MAX_ROWS = 50000; // Limit to 50K rows to avoid Supabase pagination issues
- while (from < total && all.length < MAX_ROWS) {
-   const to = from + 999;
-   try {
-     const res = await fetch(`${SB_URL}/rest/v1/${table}?${params}&offset=${from}&limit=1000`, {
-       headers
-     });
-     if (res.status === 500) {
-       console.warn(`SB 500 at offset ${from}, stopping pagination (got ${all.length} rows)`);
-       break;
-     }
-     if (!res.ok) throw new Error('SB ' + res.status + ' on ' + table);
-     const cr = res.headers.get('content-range');
-     if (cr) { const m = cr.match(/\/(\d+)/); if (m) total = parseInt(m[1]); }
-     const rows = await res.json();
-     if (!rows || rows.length === 0) break;
-     all = all.concat(rows);
-     from += rows.length;
-     if (rows.length < 1000) break;
-   } catch(e) {
-     console.warn(` Error fetching ${table} at offset ${from}:`, e.message, '(continuing with', all.length, 'rows)');
-     break;
-   }
- }
- return all;
+  return demoFilter(DEMO_DATA[table] || [], params);
+}
+
+if (DEMO_MODE) {
+  const _fetch = window.fetch.bind(window);
+  window.fetch = async (url, opts = {}) => {
+    const u = String(url);
+    if (u.includes('supabase.co')) {
+      const m = u.match(/\/rest\/v1\/(\w+)/);
+      const table = m ? m[1] : null;
+      const params = u.split('?')[1] || '';
+      const rows = demoFilter(DEMO_DATA[table] || [], params);
+      return {
+        ok: true,
+        status: 200,
+        json: async () => rows,
+        headers: { get: (k) => (k === 'content-range' ? `0-${Math.max(rows.length-1,0)}/${rows.length}` : null) }
+      };
+    }
+    return _fetch(url, opts);
+  };
 }
 
 //
@@ -1953,7 +2024,7 @@ function refreshUpliftBoard() {
 
 async function loadCapturedRevenue() {
   try {
-    const res = await fetch('https://rnqhhzatlxmyvccdvqkr.supabase.co/rest/v1/campaign_items?select=captured_uplift,implemented_at&status=eq.implemented', {
+    const res = await fetch('https://demo.local/rest/v1/campaign_items?select=captured_uplift,implemented_at&status=eq.implemented', {
       headers: {
         apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
@@ -2915,7 +2986,7 @@ function processAIQuery(query, matchedIntent) {
  if (q.match(/\b(total revenue|how much|revenue overall|make|earn|gross)\b/)) {
  if (!AI_totalRevenue) return "Revenue data isn't loaded yet.";
  const avg = AI_totalRevenue / AI_monthKeys.length;
- return `Rosslyn generated <strong style="color:#2563eb;font-size:1.1rem">${fmt$(AI_totalRevenue)}</strong> total revenue across <strong>${AI_monthKeys.length} months</strong> of data.<br><br>Average monthly revenue: <strong>${fmt$(avg)}</strong>`;
+ return `Summit Valley generated <strong style="color:#2563eb;font-size:1.1rem">${fmt$(AI_totalRevenue)}</strong> total revenue across <strong>${AI_monthKeys.length} months</strong> of data.<br><br>Average monthly revenue: <strong>${fmt$(avg)}</strong>`;
  }
 
  // PRICING GAP ANALYSIS
@@ -3108,7 +3179,7 @@ function processAIQuery(query, matchedIntent) {
  const tax = subtotal * 0.05; // GST
  const total = subtotal + tax;
 
- let html = `<strong> Sample Invoice  ${serviceHint.charAt(0).toUpperCase()+serviceHint.slice(1)} Visit</strong><br><span style="color:#64748b;font-size:0.8rem">Rosslyn Veterinary Clinic  Generated from catalog pricing</span><br><br>`;
+ let html = `<strong> Sample Invoice  ${serviceHint.charAt(0).toUpperCase()+serviceHint.slice(1)} Visit</strong><br><span style="color:#64748b;font-size:0.8rem">Summit Valley Veterinary  Generated from catalog pricing</span><br><br>`;
  html += tbl(
  ['Service / Item', 'Qty', 'Unit Price', 'Total'],
  selected.map(i => [escHtml(i.name), '1', fmt$(i.price), blueVal(fmt$(i.price))]),
@@ -3241,7 +3312,7 @@ function handleAvgTransaction() {
  const tblHtml = catRows.length ? `<br><strong>Average Revenue per Unit by Category</strong><br><table><thead><tr><th>Category</th><th style="text-align:right">Avg / Unit</th><th style="text-align:right">Total Revenue</th></tr></thead><tbody>${catRows.map(([c,v]) => `<tr><td>${escHtml(c)}</td><td style="text-align:right"><span style="color:#2563eb;font-weight:700">${fmt$(v.rev/v.qty)}</span></td><td style="text-align:right">${fmt$(v.rev)}</td></tr>`).join('')}</tbody></table>` : '';
 
  return buildResponse(
-   `Rosslyn's average revenue per transaction unit is <strong>${fmt$(avgTxn)}</strong> across all services in the dataset.`,
+   `Summit Valley's average revenue per transaction unit is <strong>${fmt$(avgTxn)}</strong> across all services in the dataset.`,
    tblHtml,
    ['How can we increase this?', 'Which services bring the highest ticket?', 'Top 10 revenue drivers']
  );
@@ -4239,7 +4310,7 @@ const WidgetBoard = (() => {
 // Clinic Settings Module
 //
 const ClinicSettings = (() => {
-  const SB_URL = 'https://rnqhhzatlxmyvccdvqkr.supabase.co';
+  const SB_URL = 'https://demo.local';
   const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30';
   const CLINIC_ID = 'rosslyn';
 
@@ -4802,7 +4873,7 @@ const CampaignUI = (() => {
   async function loadCampaignState() {
     for (const [type, num] of Object.entries(campaigns)) {
       try {
-        const res = await fetch(`https://rnqhhzatlxmyvccdvqkr.supabase.co/rest/v1/campaigns?select=*&clinic_id=eq.rosslyn&campaign_type=eq.${type}&status=eq.active&limit=1`, {
+        const res = await fetch(`https://demo.local/rest/v1/campaigns?select=*&clinic_id=eq.summit&campaign_type=eq.${type}&status=eq.active&limit=1`, {
           headers: {
             apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
@@ -4886,7 +4957,7 @@ window.activateCampaign = async function(type) {
     if (!items.length) throw new Error('No items to track');
 
     // Create campaign
-    const res = await fetch('https://rnqhhzatlxmyvccdvqkr.supabase.co/rest/v1/campaigns', {
+    const res = await fetch('https://demo.local/rest/v1/campaigns', {
       method: 'POST',
       headers: {
         apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
@@ -4920,7 +4991,7 @@ window.activateCampaign = async function(type) {
       potential_uplift: item.uplift || 0
     }));
 
-    await fetch('https://rnqhhzatlxmyvccdvqkr.supabase.co/rest/v1/campaign_items', {
+    await fetch('https://demo.local/rest/v1/campaign_items', {
       method: 'POST',
       headers: {
         apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
@@ -4954,7 +5025,7 @@ window.openCampaignAnalytics = async function(type) {
 
   try {
     // Get campaign
-    const res = await fetch(`https://rnqhhzatlxmyvccdvqkr.supabase.co/rest/v1/campaigns?select=*&clinic_id=eq.rosslyn&campaign_type=eq.${type}&status=eq.active&limit=1`, {
+    const res = await fetch(`https://demo.local/rest/v1/campaigns?select=*&clinic_id=eq.summit&campaign_type=eq.${type}&status=eq.active&limit=1`, {
       headers: {
         apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
@@ -4969,7 +5040,7 @@ window.openCampaignAnalytics = async function(type) {
     }
 
     // Get items
-    const itemsRes = await fetch(`https://rnqhhzatlxmyvccdvqkr.supabase.co/rest/v1/campaign_items?select=*&campaign_id=eq.${campaign.id}&order=potential_uplift.desc`, {
+    const itemsRes = await fetch(`https://demo.local/rest/v1/campaign_items?select=*&campaign_id=eq.${campaign.id}&order=potential_uplift.desc`, {
       headers: {
         apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
         Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
@@ -5333,18 +5404,4 @@ window.addEventListener("load",function(){
   </div>
 </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPA_URL = "https://zbcljqrfxlvdpjtumtzy.supabase.co";
-const SUPA_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiY2xqcXJmeGx2ZHBqdHVtdHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5NDI0NjAsImV4cCI6MjA5MTUxODQ2MH0.leck03bYM7wgb2K1RYSo6GLFvhUKDTwXHfGt232WIR4";
-const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
-
-// Demo mode: no login gate
-function showLogin(){}
-
-(async ()=>{
-  // skip auth gating in demo
-})();
-</script>
 </body></html>
