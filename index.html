@@ -2006,7 +2006,7 @@ function refreshUpliftBoard() {
   var c1 = window._c1Uplift || 0;
   var c2 = window._c2Uplift || 0;
   var c3 = window._c3Uplift || 0;
-  var annual = c1 + c2 + c3;
+  var annual = 20589; c1=6863; c2=6863; c3=6863;
   var avg = window._avgLineAmount || 0;
   var baselineMonthly = window._baselineMonthly || 0;
   var campaignMonth = Math.round(annual / 12);
@@ -2025,47 +2025,14 @@ function refreshUpliftBoard() {
 }
 
 async function loadCapturedRevenue() {
-  try {
-    const res = await fetch('https://demo.local/rest/v1/campaign_items?select=captured_uplift,implemented_at&status=eq.implemented', {
-      headers: {
-        apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30'
-      }
-    });
-    
-    if (!res.ok) {
-      document.getElementById('ub-captured-total').textContent = '--';
-      document.getElementById('ub-captured-yesterday').textContent = '--';
-      document.getElementById('ub-campaign-month').textContent = '--';
-      return;
-    }
-    
-    const items = await res.json();
-    const now = new Date();
-    const yesterday = new Date(now - 24 * 60 * 60 * 1000);
-    const thirtyDaysAgo = new Date(now - 30 * 24 * 60 * 60 * 1000);
-    
-    let total = 0;
-    let yesterdayTotal = 0;
-    let monthTotal = 0;
-    
-    items.forEach(item => {
-      const uplift = parseFloat(item.captured_uplift) || 0;
-      const implDate = new Date(item.implemented_at);
-      total += uplift;
-      if (implDate >= yesterday) yesterdayTotal += uplift;
-      if (implDate >= thirtyDaysAgo) monthTotal += uplift;
-    });
-    
-    document.getElementById('ub-captured-total').textContent = total > 0 ? fmt$(total) : '$0';
-    document.getElementById('ub-captured-yesterday').textContent = yesterdayTotal > 0 ? '+' + fmt$(yesterdayTotal) : '$0';
-    document.getElementById('ub-campaign-month').textContent = monthTotal > 0 ? '+' + fmt$(monthTotal) : '$0';
-  } catch (e) {
-    console.error('Failed to load captured revenue:', e);
-    document.getElementById('ub-captured-total').textContent = '--';
-    document.getElementById('ub-captured-yesterday').textContent = '--';
-    document.getElementById('ub-campaign-month').textContent = '--';
-  }
+  // Demo captured revenue (fake)
+  const total = 3200;
+  const yesterday = 180;
+  const month = Math.round(20589/12);
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  set('ub-captured-total', fmt$(total));
+  set('ub-captured-yesterday', fmt$(yesterday));
+  set('ub-campaign-month', fmt$(month));
 }
 
 async function loadServiceData() {
@@ -2232,152 +2199,33 @@ function sendQuickAction(text) {
  sendAIMessage();
 }
 
-const AI_WEBHOOK = 'https://n8n.wildeautomations.com/webhook/rosslyn-clinic-assistant';
+const AI_WEBHOOK = 'https://n8n.wildeautomations.com/webhook/demo-clinic-assistant';
 
 const CAMPAIGN_WEBHOOK = window.location.hostname === 'localhost'
   ? 'http://localhost:5678/webhook/campaign-data'
   : 'https://n8n.wildeautomations.com/webhook/campaign-data';
 async function campaignFetch(campaign) {
-  const now = Date.now();
-  if (campaignCache[campaign] && now - campaignCache[campaign].ts < CAMPAIGN_TTL) {
-    return campaignCache[campaign].data;
-  }
-  // All data comes from already-loaded Supabase tables:
-  // pricesData = [{treatment_code, price, updated_at}]
-  // treatmentsData = [{code, name}]
-  // serviceData = [{code, amount, quantity, ...}]
-  const treatMap = {};
-  const treatTypeMap = {};
-  (treatmentsData||[]).forEach(t => {
-    treatMap[t.code] = t.name || t.description || t.code;
-    treatTypeMap[t.code] = t.type_flag || '';
-  });
-  
-  // Build usage map from services (annual count)
-  const usageMap = {};
-  (serviceData||[]).forEach(r => {
-    if (!r.code) return;
-    if (!usageMap[r.code]) usageMap[r.code] = { count: 0, rev: 0 };
-    usageMap[r.code].count += (r.txn_count || 1);
-    usageMap[r.code].rev += parseFloat(r.total_amount || r.amount) || 0;
-  });
-  // Estimate annual from loaded sample (serviceData is top 10K by amount,
-  // so use totalServiceCount for scaling if available)
-  
-  const currentYear = new Date().getFullYear();
-  const today = new Date();
-  let data = { items: [] };
-
-  if (campaign === 'inflation') {
-    const items = [];
-    for (const p of (pricesData||[])) {
-      if (!p.price || p.price <= 0) continue;
-      const code = p.treatment_code;
-      // Services only (type_flag 'A') - skip inventory/dispensable items
-      const typeFlag = treatTypeMap[code] || '';
-      if (typeFlag && typeFlag.toUpperCase() !== 'A') continue;
-      const name = treatMap[code] || code;
-      // Use updated_at (billing-derived date) - last_changed from PRICE.V2$ is unreliable
-      let lastModYear, daysSince, lastModStr;
-      const dateStr = p.updated_at;
-      if (dateStr) {
-        const d = new Date(dateStr);
-        if (isNaN(d.getTime())) continue;
-        // Detect ETL insert dates (all within a few hours of each other on 2026-04-01)
-        const isETLDate = d.getFullYear() === 2026 && d.getMonth() === 3 && d.getDate() === 1 && d.getHours() < 12;
-        if (isETLDate) {
-          lastModStr = 'Unknown';
-          lastModYear = currentYear - 3;
-          daysSince = Math.round(3 * 365.25);
-        } else if (d.getFullYear() >= currentYear) {
-          continue; // Recently updated, skip
-        } else {
-          lastModYear = d.getFullYear();
-          daysSince = Math.round((today - d) / 86400000);
-          lastModStr = d.toISOString().slice(0, 10);
-        }
-      } else {
-        lastModStr = 'Unknown';
-        lastModYear = currentYear - 3;
-        daysSince = Math.round(3 * 365.25);
+  if (DEMO_MODE) {
+    const demos = {
+      inflation: {
+        items: [
+          { id: 'EXAM', name: 'Wellness Exam', lastModStr: '2023-01-15', daysSince: 820, inflPct: 12, price: 79, suggested: 89, delta: 10, usage: 620, annualUplift: 6863 }
+        ]
+      },
+      '99-pricing': {
+        items: [
+          { service: 'Dental Cleaning', category: 'Dental', currentPrice: 560, '99Price': 620, gainPerTxn: 60, volume: 114, uplift: 6863 }
+        ]
+      },
+      'micro-margin': {
+        items: [
+          { name: 'Surgical Kit', oldCost: 38, newCost: 42, costIncrease: 4, priceWithBump: 1450, annualQty: 98, annualUplift: 6863 }
+        ]
       }
-      const factor = compoundInflation(lastModYear, currentYear);
-      const suggested = Math.round(p.price * factor * 100) / 100;
-      const delta = Math.max(0, suggested - p.price);
-      if (delta < 0.01) continue;
-      const u = usageMap[code] || { count: 0 };
-      const annualUsage = u.count;
-      if (annualUsage < 1) continue; // only active items (sold in last 365 days)
-      const annualUplift = delta * annualUsage;
-      items.push({
-        id: code, name, currentPrice: p.price, suggested,
-        delta, daysSince, lastModStr,
-        inflPct: ((factor - 1) * 100).toFixed(1),
-        usage: annualUsage, uplift: annualUplift
-      });
-    }
-    items.sort((a,b) => b.uplift - a.uplift);
-    data = { items };
-  } else if (campaign === '99-pricing') {
-    // .99 pricing: for each service code, look at average transaction price
-    // If it doesn't end in .99, calculate what each txn would gain if rounded up to .99
-    const items = [];
-    for (const r of (serviceData||[])) {
-      if (!r.code) continue;
-      const avgPrice = r.total_amount / (r.txn_count || 1);
-      if (avgPrice < 2) continue;
-      const cents = Math.round(avgPrice * 100) % 100;
-      if (cents === 99 || cents === 95) continue; // already .99 or .95
-      const code = r.code;
-      const name = treatMap[code] || code;
-      const whole = Math.floor(avgPrice);
-      const price99 = whole + 0.99;
-      const gain = price99 > avgPrice ? price99 - avgPrice : (whole + 1 + 0.99) - avgPrice;
-      if (gain <= 0 || gain > 1.5) continue;
-      const volume = r.txn_count || 0;
-      if (volume < 1) continue;
-      const annualUplift = gain * volume;
-      items.push({
-        service: name, category: r.service_type || '', currentPrice: parseFloat(avgPrice.toFixed(2)),
-        '99Price': price99 > avgPrice ? price99 : whole + 1.99,
-        gainPerTxn: parseFloat(gain.toFixed(2)), volume, uplift: parseFloat(annualUplift.toFixed(2))
-      });
-    }
-    items.sort((a,b) => b.uplift - a.uplift);
-    data = { items };
-  } else if (campaign === 'micro-margin') {
-    // Micro margin: items with price changes in last 365 days
-    // Count sales SINCE the price change, calculate 5% markup on new price
-    const items = [];
-    const now = new Date();
-    const oneYearAgo = new Date(now - 365 * 86400000);
-    for (const p of (pricesData||[])) {
-      if (!p.price || p.price <= 0) continue;
-      const d = new Date(p.updated_at);
-      // Only items changed in last 365 days (exclude ETL date)
-      if (d < oneYearAgo) continue;
-      if (d.getFullYear() === 2026 && d.getMonth() === 3 && d.getDate() === 1) continue;
-      const code = p.treatment_code;
-      const name = treatMap[code] || code;
-      // Use micro_margin_agg data if loaded, otherwise estimate from usage
-      const mmData = (microMarginData||[]).find(m => m.code === code);
-      const salesSince = mmData ? mmData.sales_since_change : 0;
-      if (salesSince < 1) continue;
-      const bump = p.price * 0.05;
-      const priceWithBump = Math.round((p.price + bump) * 100) / 100;
-      const uplift = bump * salesSince;
-      items.push({
-        name, oldCost: p.price, newCost: p.price,
-        costIncrease: 0, priceWithBump,
-        priceChanged: d.toISOString().slice(0,10),
-        annualQty: salesSince, annualUplift: parseFloat(uplift.toFixed(2))
-      });
-    }
-    items.sort((a,b) => b.annualUplift - a.annualUplift);
-    data = { items };
+    };
+    return demos[campaign] || { items: [] };
   }
-  campaignCache[campaign] = { data, ts: now };
-  return data;
+  return { items: [] };
 }
 
 function sendAIMessage() {
@@ -3335,7 +3183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 
 const WidgetBoard = (() => {
   const CACHE_TTL = 5 * 60 * 1000;
-  const STORAGE_KEY = 'rosslyn_widget_layout_v4';
+  const STORAGE_KEY = 'demo_widget_layout_v4';
   const DEFAULT_LAYOUT = ['month-revenue','week-revenue','today-revenue','new-clients','monthly-trend','revenue-by-category','top-services'];
 
   const sbCache = {};
@@ -4314,7 +4162,7 @@ const WidgetBoard = (() => {
 const ClinicSettings = (() => {
   const SB_URL = 'https://demo.local';
   const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucWhoemF0bHhteXZjY2R2cWtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUwMTQ5ODUsImV4cCI6MjA5MDU5MDk4NX0.zokle21pVEPG5bIOFiyZIWYkYIwhkolWNOhJ7Cbub30';
-  const CLINIC_ID = 'rosslyn';
+  const CLINIC_ID = 'demo';
 
   const DEFAULT_FIXED = [
     { label: 'Rent / Facility', amount: 0 },
@@ -4968,7 +4816,7 @@ window.activateCampaign = async function(type) {
         Prefer: 'return=representation'
       },
       body: JSON.stringify({
-        clinic_id: 'rosslyn',
+        clinic_id: 'demo',
         campaign_type: type,
         name: type === 'inflation' ? 'Inflation Price Adjustment' :
               type === '99-pricing' ? '.99 Pricing Recovery' : 'Inventory Micro Margin',
